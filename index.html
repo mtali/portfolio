@@ -4,308 +4,360 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Emmanuel Mtali — Mobile Engineer</title>
-<meta name="description" content="Lead Mobile Engineer. Kotlin, Android, Spring Boot. Shipped apps with millions of downloads." />
+<meta name="description" content="Emmanuel Mtali, Lead Mobile Engineer. Kotlin, Android, Spring Boot. I build Android apps people use every day." />
 
-<!-- Open Graph / link previews -->
 <meta property="og:title" content="Emmanuel Mtali — Lead Mobile Engineer" />
 <meta property="og:description" content="Kotlin, Android, Spring Boot. Shipped apps with millions of downloads." />
-<meta property="og:image" content="assets/avatar.png" />
+<meta property="og:image" content="https://mtali.github.io/portfolio/assets/avatar.png" />
 <meta property="og:type" content="website" />
 
 <link rel="icon" type="image/png" href="assets/avatar.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 <style>
   :root {
-    --bg: #0a0d12;
-    --bg-soft: #0f141b;
-    --panel: #141b24;
-    --panel-hi: #1a232e;
-    --border: #222d3a;
-    --text: #e9eef4;
-    --muted: #94a3b3;
-    --faint: #66748a;
-    --accent: #5b9dff;
-    --accent2: #9b6bff;
-    --green: #46d17a;
-    --radius: 16px;
+    --navy: #0a192f;
+    --light-navy: #112240;
+    --lightest-navy: #233554;
+    --navy-shadow: rgba(2,12,27,0.7);
+    --slate: #8892b0;
+    --light-slate: #a8b2d1;
+    --lightest-slate: #ccd6f6;
+    --white: #e6f1ff;
+    --green: #64ffda;
+    --green-tint: rgba(100,255,218,0.1);
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --maxw: 1100px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: hidden; }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    width: 100%;
+    background: var(--navy); color: var(--slate);
+    font-family: var(--font-sans); line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    counter-reset: section;
   }
-  a { color: inherit; }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
-  .mono { font-family: 'JetBrains Mono', monospace; }
+  a { color: var(--green); text-decoration: none; transition: color .2s; }
+  ::selection { background: var(--green-tint); }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(24px, 5vw, 56px); }
+  .mono { font-family: var(--font-mono); }
+  .green { color: var(--green); }
 
-  /* Animated gradient glow behind hero */
-  .glow {
-    position: absolute;
-    top: -260px; left: 50%;
-    transform: translateX(-50%);
-    width: min(900px, 100vw); height: 700px;
-    max-width: 100vw;
-    background: radial-gradient(closest-side, rgba(91,157,255,0.22), transparent 70%),
-                radial-gradient(closest-side, rgba(155,107,255,0.18), transparent 70%);
-    background-position: 30% 30%, 70% 60%;
-    background-repeat: no-repeat;
-    background-size: 60% 60%, 55% 55%;
-    filter: blur(20px);
-    pointer-events: none;
-    z-index: 0;
-    animation: drift 14s ease-in-out infinite alternate;
+  /* Top nav */
+  nav.bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(20px, 4vw, 44px); height: 74px;
+    background: rgba(10,25,47,0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: transform .3s ease, box-shadow .3s ease, height .3s ease;
   }
-  @keyframes drift {
-    0%   { background-position: 25% 30%, 75% 60%; }
-    100% { background-position: 60% 50%, 35% 40%; }
-  }
+  nav.bar.scrolled { height: 64px; box-shadow: 0 10px 30px -10px var(--navy-shadow); }
+  nav.bar.hide { transform: translateY(-100%); }
+  nav .logo { display: inline-flex; align-items: center; }
+  nav .logo a { display: grid; place-items: center; width: 42px; height: 42px; border: 2px solid var(--green); border-radius: 8px; color: var(--green); font-family: var(--font-mono); font-weight: 600; transition: background .2s; }
+  nav .logo a:hover { background: var(--green-tint); }
+  nav .menu { display: flex; align-items: center; gap: 6px; }
+  nav .menu a { color: var(--lightest-slate); font-size: 0.82rem; font-family: var(--font-mono); padding: 10px 12px; }
+  nav .menu a:hover { color: var(--green); }
+  nav .menu a .idx { color: var(--green); margin-right: 5px; }
+  nav .menu .resume { margin-left: 14px; color: var(--green); border: 1px solid var(--green); border-radius: 6px; padding: 9px 16px; font-size: 0.78rem; }
+  nav .menu .resume:hover { background: var(--green-tint); }
+  @media (max-width: 720px) { nav .menu a:not(.resume) { display: none; } }
+
+  /* Fixed side rails */
+  .rail { position: fixed; bottom: 0; z-index: 40; }
+  .rail::after { content: ''; display: block; width: 1px; height: 92px; margin: 0 auto; background: var(--light-slate); }
+  .rail.left { left: 40px; }
+  .rail.right { right: 40px; }
+  .rail.left ul { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .rail.left a { color: var(--light-slate); display: inline-flex; }
+  .rail.left a svg { width: 21px; height: 21px; }
+  .rail.left a:hover { color: var(--green); transform: translateY(-3px); }
+  .rail.right a { writing-mode: vertical-rl; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; color: var(--light-slate); padding-bottom: 22px; }
+  .rail.right a:hover { color: var(--green); transform: translateY(-3px); }
+  .rail a { transition: color .2s, transform .2s; }
+  @media (max-width: 1080px) { .rail { display: none; } }
+
+  main { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(24px, 5vw, 56px); }
 
   /* Hero */
-  header { position: relative; padding: 84px 0 48px; z-index: 1; }
-  .avatar {
-    width: 104px; height: 104px; border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--border);
-    box-shadow: 0 0 0 6px rgba(91,157,255,0.08), 0 12px 40px rgba(0,0,0,0.5);
-    margin-bottom: 24px;
-  }
-  h1 {
-    font-size: clamp(2.2rem, 6vw, 3.4rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-  }
-  .tagline {
-    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
-    font-weight: 600;
-    margin-top: 14px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .location { color: var(--muted); margin-top: 6px; }
-  .location .dot { color: var(--green); }
-  .contact { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    text-decoration: none;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 10px 16px;
-    border-radius: 10px;
-    font-size: 0.92rem; font-weight: 500;
-    transition: all .18s ease;
-  }
-  .btn:hover { border-color: var(--accent); color: #fff; transform: translateY(-2px); background: var(--panel-hi); }
-  .btn.primary {
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-color: transparent; color: #fff; font-weight: 600;
-  }
-  .btn.primary:hover { filter: brightness(1.1); }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 100px 0 40px; }
+  .hero .intro-line { color: var(--green); font-family: var(--font-mono); font-size: clamp(0.85rem, 2vw, 1rem); margin-bottom: 22px; }
+  .hero h1 { color: var(--lightest-slate); font-size: clamp(2.6rem, 9vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+  .hero h2 { color: var(--slate); font-size: clamp(2rem, 8vw, 4.4rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-top: 6px; }
+  .hero p { max-width: 560px; margin-top: 26px; font-size: 1.05rem; }
+  .hero p strong { color: var(--light-slate); font-weight: 600; }
+  .hero .cta { display: inline-block; margin-top: 44px; font-family: var(--font-mono); color: var(--green); border: 1px solid var(--green); border-radius: 6px; padding: 18px 26px; font-size: 0.9rem; transition: background .2s, transform .2s; }
+  .hero .cta:hover { background: var(--green-tint); transform: translateY(-3px); }
 
-  /* Stats band */
-  .stats {
-    position: relative; z-index: 1;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 14px; margin: 8px 0 24px;
-  }
-  .stat {
-    background: linear-gradient(180deg, var(--panel), var(--bg-soft));
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px 16px;
-    text-align: center;
-  }
-  .stat .num {
-    font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em;
-    background: linear-gradient(90deg, #fff, #b9c6d6);
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .stat .lbl { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
+  /* Section scaffolding */
+  section { padding: 90px 0; max-width: 1000px; margin: 0 auto; }
+  .numbered { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 700; color: var(--lightest-slate); white-space: nowrap; }
+  .numbered::before { counter-increment: section; content: "0" counter(section) "."; color: var(--green); font-family: var(--font-mono); font-size: clamp(1rem, 3vw, 1.25rem); font-weight: 400; }
+  .numbered::after { content: ''; display: block; height: 1px; width: 100%; max-width: 320px; background: var(--lightest-navy); }
 
-  /* Sections */
-  section { position: relative; z-index: 1; padding: 38px 0; }
-  .eyebrow {
-    font-size: 0.82rem; letter-spacing: 0.04em;
-    color: var(--accent); font-weight: 600; margin-bottom: 6px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .sec-title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 26px; }
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 50px; }
+  .about p { margin-bottom: 14px; }
+  .about p strong { color: var(--lightest-slate); font-weight: 600; }
+  .tech-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 12px; margin-top: 18px; }
+  .tech-list li { position: relative; padding-left: 20px; font-family: var(--font-mono); font-size: 0.84rem; color: var(--slate); list-style: none; }
+  .tech-list li::before { content: '▹'; position: absolute; left: 0; color: var(--green); }
+  .photo-wrap { position: relative; max-width: 300px; }
+  .photo { position: relative; border-radius: 8px; z-index: 1; }
+  .photo img { display: block; width: 100%; border-radius: 8px; filter: grayscale(0.2) contrast(1.05); transition: filter .25s; }
+  .photo::after { content: ''; position: absolute; inset: 0; background: var(--green); mix-blend-mode: screen; opacity: 0.18; border-radius: 8px; transition: opacity .25s; }
+  .photo-wrap::before { content: ''; position: absolute; inset: 16px -16px -16px 16px; border: 2px solid var(--green); border-radius: 8px; z-index: 0; transition: inset .25s; }
+  .photo-wrap:hover::before { inset: 12px -12px -12px 12px; }
+  .photo-wrap:hover .photo::after { opacity: 0; }
+  .photo-wrap:hover .photo img { filter: none; }
 
-  /* App cards */
-  .apps { display: grid; gap: 18px; }
-  .card {
-    display: flex; gap: 20px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    position: relative; overflow: hidden;
-    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-  }
-  .card::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), rgba(91,157,255,0.08), transparent 40%);
-    opacity: 0; transition: opacity .3s;
-  }
-  .card:hover { transform: translateY(-4px); border-color: #2e3d4f; box-shadow: 0 18px 50px rgba(0,0,0,0.45); }
-  .card:hover::before { opacity: 1; }
-  .icon {
-    width: 72px; height: 72px; border-radius: 18px; flex-shrink: 0;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-  }
-  .card-body { flex: 1; min-width: 0; }
-  .card-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .card-head h3 { font-size: 1.3rem; font-weight: 700; }
-  .badge {
-    font-size: 0.78rem; font-weight: 600;
-    color: var(--green); background: rgba(70,209,122,0.12);
-    padding: 4px 11px; border-radius: 20px; white-space: nowrap;
-  }
-  .badge.gray { color: var(--muted); background: rgba(148,163,179,0.12); }
-  .card p { color: var(--muted); margin: 10px 0 14px; font-size: 0.97rem; }
-  .stack { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    font-size: 0.78rem; color: var(--text);
-    background: var(--panel-hi); border: 1px solid var(--border);
-    padding: 3px 10px; border-radius: 6px;
-  }
-  .card-cta { margin-top: 16px; }
-  .play-link {
-    display: inline-flex; align-items: center; gap: 7px;
-    color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem;
-  }
-  .play-link:hover { text-decoration: underline; }
-
-  /* Repos */
-  .repos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .repo {
-    background: var(--panel); border: 1px solid var(--border);
-    border-radius: 12px; padding: 16px 18px;
-    text-decoration: none; transition: all .18s ease;
-  }
-  .repo:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .repo .name { color: var(--accent); font-weight: 700; font-size: 0.98rem; }
-  .repo .desc { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
-
-  /* Skills */
-  .skill-group { margin-bottom: 18px; }
-  .skill-group .label { color: var(--faint); font-size: 0.82rem; font-weight: 600; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag {
-    font-size: 0.84rem; color: var(--text);
-    background: linear-gradient(180deg, var(--panel-hi), var(--panel));
-    border: 1px solid var(--border);
-    padding: 6px 13px; border-radius: 8px;
-  }
-
-  .note { color: var(--muted); font-size: 0.98rem; }
-  .note strong { color: var(--text); }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-  footer { padding: 48px 0 72px; color: var(--faint); font-size: 0.88rem; text-align: center; position: relative; z-index: 1; }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
-
-  /* Reveal on scroll */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.in { opacity: 1; transform: none; }
-
+  /* Experience tabs */
+  .exp { display: grid; grid-template-columns: max-content 1fr; gap: 28px; }
+  .tabs { display: flex; flex-direction: column; position: relative; }
+  .tabs button { font-family: var(--font-mono); font-size: 0.82rem; text-align: left; background: none; border: none; border-left: 2px solid var(--lightest-navy); color: var(--slate); padding: 12px 20px; cursor: pointer; white-space: nowrap; transition: all .2s; }
+  .tabs button:hover, .tabs button.active { color: var(--green); background: var(--green-tint); }
+  .tabs button.active { border-left-color: var(--green); }
+  .panel { display: none; }
+  .panel.active { display: block; animation: fade .4s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .panel h3 { color: var(--lightest-slate); font-size: 1.25rem; font-weight: 600; }
+  .panel h3 .at { color: var(--green); }
+  .panel .range { font-family: var(--font-mono); font-size: 0.8rem; color: var(--slate); margin: 4px 0 16px; }
+  .panel ul li { position: relative; padding-left: 26px; margin-bottom: 10px; list-style: none; }
+  .panel ul li::before { content: '▹'; position: absolute; left: 0; color: var(--green); }
   @media (max-width: 640px) {
-    .stats { grid-template-columns: 1fr 1fr; }
-    .repos { grid-template-columns: 1fr; }
-    .card { flex-direction: column; gap: 14px; }
-    .icon { width: 60px; height: 60px; }
+    .tabs { flex-direction: row; overflow-x: auto; }
+    .tabs button { border-left: none; border-bottom: 2px solid var(--lightest-navy); }
+    .tabs button.active { border-bottom-color: var(--green); }
+    .exp { grid-template-columns: 1fr; }
   }
+
+  /* Featured projects */
+  .projects { display: flex; flex-direction: column; gap: 90px; }
+  .project { position: relative; display: grid; grid-template-columns: repeat(12, 1fr); align-items: center; }
+  .project .pcontent { grid-column: 1 / 8; grid-row: 1; z-index: 3; }
+  .project .pmedia { grid-column: 6 / 13; grid-row: 1; position: relative; }
+  .project.rev .pcontent { grid-column: 6 / 13; text-align: right; }
+  .project.rev .pmedia { grid-column: 1 / 8; }
+  .project .label { color: var(--green); font-family: var(--font-mono); font-size: 0.8rem; margin-bottom: 8px; }
+  .project .ptitle { color: var(--lightest-slate); font-size: 1.6rem; font-weight: 700; margin-bottom: 18px; }
+  .project .pdesc { background: var(--light-navy); color: var(--light-slate); padding: 22px 26px; border-radius: 8px; font-size: 0.96rem; box-shadow: 0 18px 40px -18px var(--navy-shadow); }
+  .project .pbadges { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .project.rev .pbadges { justify-content: flex-end; }
+  .project .pbadge { font-family: var(--font-mono); font-size: 0.7rem; color: var(--green); background: var(--green-tint); padding: 3px 9px; border-radius: 4px; }
+  .project .ptech { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--light-slate); }
+  .project.rev .ptech { justify-content: flex-end; }
+  .project .plinks { margin-top: 16px; display: flex; gap: 18px; }
+  .project.rev .plinks { justify-content: flex-end; }
+  .project .plinks a { color: var(--lightest-slate); display: inline-flex; }
+  .project .plinks a:hover { color: var(--green); }
+  .project .plinks svg { width: 20px; height: 20px; }
+  .project .pmedia .media-inner { position: relative; border-radius: 8px; overflow: hidden; }
+  .project .pmedia.phone { display: flex; justify-content: center; }
+  .project .pmedia.phone video, .project .pmedia.phone img { width: 230px; border-radius: 14px; box-shadow: 0 26px 60px -20px var(--navy-shadow); border: 1px solid var(--lightest-navy); background: #000; }
+  .project .pmedia.phone.multi { gap: 14px; }
+  .project .pmedia.phone.multi img { width: 150px; }
+  .project .pmedia.wide img { width: 100%; border-radius: 8px; box-shadow: 0 26px 60px -20px var(--navy-shadow); }
+  @media (max-width: 768px) {
+    .project, .project.rev { display: block; padding: 26px; background: var(--light-navy); border-radius: 10px; }
+    .project .pcontent, .project.rev .pcontent { text-align: left; }
+    .project .pdesc { background: transparent; padding: 12px 0 0; box-shadow: none; }
+    .project .pbadges, .project.rev .pbadges, .project .ptech, .project.rev .ptech, .project .plinks, .project.rev .plinks { justify-content: flex-start; }
+    .project .pmedia { margin-top: 22px; }
+  }
+
+  /* Other noteworthy */
+  .other-title { text-align: center; }
+  .other-title h2 { color: var(--lightest-slate); font-size: 1.7rem; font-weight: 700; }
+  .other-title .sub { color: var(--green); font-family: var(--font-mono); font-size: 0.82rem; margin-bottom: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+  .ncard { background: var(--light-navy); border-radius: 10px; padding: 26px; display: flex; flex-direction: column; transition: transform .2s; }
+  .ncard:hover { transform: translateY(-7px); }
+  .ncard .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .ncard .folder svg { width: 38px; height: 38px; color: var(--green); }
+  .ncard .ext { color: var(--lightest-slate); }
+  .ncard .ext:hover { color: var(--green); }
+  .ncard .ext svg { width: 20px; height: 20px; }
+  .ncard h3 { color: var(--lightest-slate); font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
+  .ncard h3 a:hover { color: var(--green); }
+  .ncard p { font-size: 0.9rem; flex: 1; }
+  .ncard .foot { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate); }
+  @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+
+  /* Contact */
+  .contact { text-align: center; max-width: 620px; }
+  .contact .sub { color: var(--green); font-family: var(--font-mono); font-size: 0.85rem; }
+  .contact h2 { color: var(--lightest-slate); font-size: clamp(2.2rem, 7vw, 3.2rem); font-weight: 800; margin: 14px 0 22px; }
+  .contact .cta { display: inline-block; margin-top: 34px; font-family: var(--font-mono); color: var(--green); border: 1px solid var(--green); border-radius: 6px; padding: 18px 30px; font-size: 0.92rem; transition: background .2s, transform .2s; }
+  .contact .cta:hover { background: var(--green-tint); transform: translateY(-3px); }
+
+  footer { padding: 30px 0 28px; text-align: center; }
+  footer .social-m { display: none; justify-content: center; gap: 26px; margin-bottom: 16px; }
+  footer .social-m a { color: var(--light-slate); }
+  footer .social-m svg { width: 22px; height: 22px; }
+  footer .credit { font-family: var(--font-mono); font-size: 0.74rem; color: var(--slate); }
+  @media (max-width: 1080px) { footer .social-m { display: flex; } }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 </style>
 </head>
 <body>
-<div class="glow"></div>
 
-<div class="wrap">
-
-  <header class="reveal">
-    <img class="avatar" src="assets/avatar.png" alt="Emmanuel Mtali" />
-    <h1>Emmanuel S Mtali</h1>
-    <div class="tagline">Lead Mobile Engineer. Kotlin, Android, Spring Boot.</div>
-    <div class="location"><span class="dot">●</span> Dar es Salaam, Tanzania. Open to remote (EAT, UTC+3).</div>
-    <div class="contact">
-      <a class="btn primary" href="mailto:emmanuelmtalig@gmail.com">Get in touch</a>
-      <a class="btn" href="https://github.com/mtali">GitHub</a>
-      <a class="btn" href="https://linkedin.com/in/emmanuel-mtali">LinkedIn</a>
-      <a class="btn" href="tel:+255786670278">+255 786 670 278</a>
-    </div>
-  </header>
-
-  <div class="stats reveal">
-    <div class="stat"><div class="num">8+ yrs</div><div class="lbl">building mobile</div></div>
-    <div class="stat"><div class="num">99.99%</div><div class="lbl">crash-free sessions</div></div>
-    <div class="stat"><div class="num">4.8</div><div class="lbl">Play Store rating</div></div>
-    <div class="stat"><div class="num">38</div><div class="lbl">public repos</div></div>
+<nav class="bar" id="nav">
+  <div class="logo"><a href="#top">EM</a></div>
+  <div class="menu">
+    <a href="#about"><span class="idx">01.</span>About</a>
+    <a href="#work"><span class="idx">02.</span>Experience</a>
+    <a href="#projects"><span class="idx">03.</span>Work</a>
+    <a href="#contact"><span class="idx">04.</span>Contact</a>
+    <a class="resume" href="https://drive.google.com/file/d/1ZXI2MNvVl-ZkIPYGaqrwUj1PNpUMYZXT/view?usp=sharing">Resume</a>
   </div>
+</nav>
 
-  <section class="reveal">
-    <div class="eyebrow">Shipped to Google Play</div>
-    <div class="sec-title">Apps in production</div>
-    <div class="apps">
+<div class="rail left">
+  <ul>
+    <li><a href="https://github.com/mtali" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a></li>
+    <li><a href="https://linkedin.com/in/emmanuel-mtali" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></li>
+    <li><a href="mailto:emmanuelmtalig@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a></li>
+  </ul>
+</div>
+<div class="rail right"><a href="mailto:emmanuelmtalig@gmail.com">emmanuelmtalig@gmail.com</a></div>
 
-      <div class="card">
-        <img class="icon" src="assets/starapp.png" alt="StarApp icon" />
-        <div class="card-body">
-          <div class="card-head">
-            <h3>StarApp</h3>
-            <span class="badge">4.8 rating · 120 reviews</span>
+<main id="top">
+
+  <section class="hero" id="home">
+    <div class="intro-line">Hi, my name is</div>
+    <h1>Emmanuel Mtali.</h1>
+    <h2>I build Android apps people use every day.</h2>
+    <p>I'm a mobile engineer with <strong>8 years</strong> shipping production Android. I lead mobile at <strong>Jaza Energy</strong>, where I founded and ship our two apps, and I'm open to senior or lead remote roles. Kotlin, Compose, and a real Spring Boot backend.</p>
+    <a class="cta" href="mailto:emmanuelmtalig@gmail.com">Get in touch</a>
+  </section>
+
+  <section id="about" class="reveal">
+    <div class="numbered">About me</div>
+    <div class="about-grid">
+      <div class="about">
+        <p>Hi, I'm Emmanuel, a mobile engineer based in Dar es Salaam, Tanzania. I've spent the last 8 years building Android apps that hold up in the field, on weak networks, in the hands of people doing real work.</p>
+        <p>I lead the mobile platform at <strong>Jaza Energy</strong>, a solar company powering off-grid communities across Tanzania and Nigeria. I founded our two production apps, migrated our core app from Java to Kotlin, and re-architected it into clean, multi-module Compose. Before Jaza I built the Tanzania payments side of <strong>MyDStv</strong> (5M+ downloads) at Mobile Power.</p>
+        <p>I work across the stack too, Spring Boot and Laravel backends, so I understand both ends of the wire. Here are a few technologies I work with:</p>
+        <ul class="tech-list">
+          <li>Kotlin</li>
+          <li>Jetpack Compose</li>
+          <li>Kotlin Multiplatform</li>
+          <li>Coroutines &amp; Flow</li>
+          <li>Spring Boot</li>
+          <li>Laravel / PHP</li>
+        </ul>
+      </div>
+      <div class="about-photo">
+        <div class="photo-wrap">
+          <div class="photo"><img src="assets/avatar.png" alt="Emmanuel Mtali" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="reveal">
+    <div class="numbered">Where I've worked</div>
+    <div class="exp">
+      <div class="tabs" role="tablist">
+        <button class="active" data-tab="t1">Jaza Energy</button>
+        <button data-tab="t2">Airtel</button>
+        <button data-tab="t3">Mobile Power</button>
+      </div>
+      <div class="panels">
+        <div class="panel active" id="t1">
+          <h3>Lead, Mobile Platform <span class="at">@ Jaza Energy</span></h3>
+          <div class="range">October 2021 — Present</div>
+          <ul>
+            <li>Founded and lead StarApp and SiteApp, the Android apps Jaza's field agents use across Tanzania and Nigeria.</li>
+            <li>Migrated StarApp from Java to Kotlin and grew it to ~36K lines in a multi-module clean architecture; authored 99.5% of the code.</li>
+            <li>Shipped the v2.0 release as Lead, re-architecting 29 feature modules in my first month.</li>
+            <li>Built SiteApp from scratch on Kotlin Multiplatform with an offline-first sync layer that keeps working on weak networks.</li>
+            <li>Progressed from Android Developer to Software Engineer to Senior to Lead, Mobile Platform.</li>
+          </ul>
+        </div>
+        <div class="panel" id="t2">
+          <h3>MIS Engineer <span class="at">@ Airtel Tanzania</span></h3>
+          <div class="range">March 2024 — April 2025</div>
+          <ul>
+            <li>Built reporting and data tooling for the MIS team supporting network operations.</li>
+            <li>Worked part-time alongside my Jaza role during the transition into mobile leadership.</li>
+          </ul>
+        </div>
+        <div class="panel" id="t3">
+          <h3>Senior Software Developer <span class="at">@ Mobile Power</span></h3>
+          <div class="range">June 2017 — October 2021</div>
+          <ul>
+            <li>Owned the Tanzania payments side of MyDStv, MultiChoice's DStv app, with 5M+ downloads.</li>
+            <li>Integrated Vodacom, Airtel, Tigo, Halotel and Selcom into one payment API gateway.</li>
+            <li>Built the country-wide <span class="mono">*150*53#</span> DStv USSD payment system, processing tens of thousands of payments a month and lifting subscriptions by over 50%.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <div class="numbered">Things I've built</div>
+    <div class="projects">
+
+      <div class="project">
+        <div class="pcontent">
+          <div class="label">Featured Project · Live on Google Play</div>
+          <div class="ptitle">StarApp</div>
+          <div class="pdesc">The core Android app Jaza Energy field agents use for solar charging station inventory, customers, transactions, and device monitoring. I founded it in 2021, migrated it from Java to Kotlin, and grew it to ~36K lines in a multi-module clean architecture. Rated 4.8 from 120 reviews.</div>
+          <div class="ptech">
+            <span>Kotlin</span><span>Jetpack Compose</span><span>Clean Architecture</span><span>Hilt</span><span>Room</span><span>ML Kit</span>
           </div>
-          <p>The core Android app Jaza Energy field agents use for solar charging station inventory, customers, transactions, and device monitoring. I founded it in 2021, migrated it from Java to Kotlin, and grew it to ~36K lines in a multi-module clean architecture. As Lead I shipped the v2.0 release, re-architecting 29 feature modules in my first month. I authored 99.5% of the code.</p>
-          <div class="stack">
-            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Clean Architecture</span><span class="chip">Hilt</span><span class="chip">Room</span><span class="chip">WorkManager</span><span class="chip">Sentry</span><span class="chip">ML Kit</span>
+          <div class="plinks">
+            <a href="https://play.google.com/store/apps/details?id=com.jaza.starapp" aria-label="Google Play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l16 9-16 9V3z"/></svg></a>
           </div>
-          <div class="card-cta">
-            <a class="play-link" href="https://play.google.com/store/apps/details?id=com.jaza.starapp">View on Google Play →</a>
-          </div>
+        </div>
+        <div class="pmedia phone">
+          <video src="assets/screens/star-demo.mp4" autoplay muted loop playsinline preload="metadata" aria-label="StarApp walkthrough"></video>
         </div>
       </div>
 
-      <div class="card">
-        <img class="icon" src="assets/siteapp.png" alt="SiteApp icon" />
-        <div class="card-body">
-          <div class="card-head">
-            <h3>SiteApp</h3>
-            <span class="badge">4.8 rating · 84 reviews</span>
+      <div class="project rev">
+        <div class="pcontent">
+          <div class="label">Featured Project · Live on Google Play</div>
+          <div class="ptitle">SiteApp</div>
+          <div class="pdesc">The app field agents use to validate sites, run surveys, recruit candidates, and ship commissioning checklists across Tanzania and Nigeria. Built from scratch on a Kotlin Multiplatform codebase: Android is live, and iOS runs from the same shared code, in pre-release. Offline-first with webhook sync and automatic retry.</div>
+          <div class="ptech">
+            <span>Kotlin Multiplatform</span><span>Compose Multiplatform</span><span>Room</span><span>Coroutines</span><span>Retrofit</span>
           </div>
-          <p>The Android app field agents use to validate sites, run surveys, recruit candidates, and ship commissioning checklists across Tanzania and Nigeria. I built it from scratch as founding engineer. 23K+ lines of Kotlin. It runs offline-first with WorkManager sync and webhook-based server sync with automatic retry, so it works reliably where the network is weak.</p>
-          <div class="stack">
-            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Room</span><span class="chip">Coroutines</span><span class="chip">Hilt</span><span class="chip">Retrofit</span><span class="chip">Sentry</span>
+          <div class="plinks">
+            <a href="https://play.google.com/store/apps/details?id=com.jaza.jazaops" aria-label="Google Play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l16 9-16 9V3z"/></svg></a>
           </div>
-          <div class="card-cta">
-            <a class="play-link" href="https://play.google.com/store/apps/details?id=com.jaza.jazaops">View on Google Play →</a>
-          </div>
+        </div>
+        <div class="pmedia phone multi" style="display:flex;">
+          <img src="assets/screens/site-home.png" alt="SiteApp home" loading="lazy" />
+          <img src="assets/screens/site-survey.png" alt="SiteApp survey" loading="lazy" />
         </div>
       </div>
 
-      <div class="card">
-        <img class="icon" src="assets/podplay.png" alt="PodPlay icon" />
-        <div class="card-body">
-          <div class="card-head">
-            <h3>PodPlay</h3>
-            <span class="badge gray">Personal app</span>
+      <div class="project">
+        <div class="pcontent">
+          <div class="label">Personal Project · Open source</div>
+          <div class="ptitle">GoPods</div>
+          <div class="pdesc">A podcast app I built and published on Google Play. Browse and search shows, subscribe to feeds, and stream episodes with background playback via Media3. The clip is the real app running, and it's open-source on GitHub.</div>
+          <div class="ptech">
+            <span>Kotlin</span><span>Jetpack Compose</span><span>Media3</span><span>Coroutines</span><span>Room</span>
           </div>
-          <p>A podcast player I built and published on my own developer account. A personal project to explore Android media playback, podcast feed parsing, and a clean Compose UI.</p>
-          <div class="stack">
-            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Media3</span>
+          <div class="plinks">
+            <a href="https://github.com/mtali/gopods" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+            <a href="https://play.google.com/store/apps/details?id=com.colisa.podplay" aria-label="Google Play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l16 9-16 9V3z"/></svg></a>
           </div>
-          <div class="card-cta">
-            <a class="play-link" href="https://play.google.com/store/apps/details?id=com.colisa.podplay">View on Google Play →</a>
-          </div>
+        </div>
+        <div class="pmedia phone">
+          <img src="assets/screens/gopods.gif" alt="GoPods demo" loading="lazy" />
         </div>
       </div>
 
@@ -313,66 +365,114 @@
   </section>
 
   <section class="reveal">
-    <div class="eyebrow">Open source</div>
-    <div class="sec-title">Code samples on GitHub</div>
-    <div class="repos">
-      <a class="repo" href="https://github.com/mtali/bolt"><div class="name">Bolt</div><div class="desc">Open-source ride-sharing app clone. Kotlin, Compose, Google Maps SDK.</div></a>
-      <a class="repo" href="https://github.com/mtali/stock"><div class="name">Stock</div><div class="desc">Browse active and delisted US stocks and ETFs. Kotlin.</div></a>
-      <a class="repo" href="https://github.com/mtali/TigoPesa"><div class="name">TigoPesa</div><div class="desc">Compose recreation of the legacy Tigo Pesa app UI.</div></a>
-      <a class="repo" href="https://github.com/mtali/monsterdex"><div class="name">Monsterdex</div><div class="desc">Pokemon listing app. Kotlin, Compose.</div></a>
-      <a class="repo" href="https://github.com/mtali/gopods"><div class="name">GoPods</div><div class="desc">Android podcast app. Kotlin.</div></a>
-      <a class="repo" href="https://github.com/mtali"><div class="name">+ 33 more</div><div class="desc">See everything at github.com/mtali.</div></a>
+    <div class="other-title">
+      <div class="sub">Other things</div>
+      <h2>Noteworthy projects &amp; writing</h2>
+    </div>
+    <div class="grid">
+      <div class="ncard">
+        <div class="top">
+          <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <a class="ext" href="https://github.com/mtali/bolt" aria-label="External"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        </div>
+        <h3><a href="https://github.com/mtali/bolt">Bolt</a></h3>
+        <p>Open-source ride-sharing app clone with live maps and routing.</p>
+        <div class="foot"><span>Kotlin</span><span>Compose</span><span>Maps SDK</span></div>
+      </div>
+      <div class="ncard">
+        <div class="top">
+          <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <a class="ext" href="https://github.com/mtali/stock" aria-label="External"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        </div>
+        <h3><a href="https://github.com/mtali/stock">Stock</a></h3>
+        <p>Browse active and delisted US stocks and ETFs from a market API.</p>
+        <div class="foot"><span>Kotlin</span><span>Compose</span></div>
+      </div>
+      <div class="ncard">
+        <div class="top">
+          <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <a class="ext" href="https://github.com/mtali/TigoPesa" aria-label="External"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        </div>
+        <h3><a href="https://github.com/mtali/TigoPesa">TigoPesa</a></h3>
+        <p>Compose recreation of the legacy Tigo Pesa mobile money app UI.</p>
+        <div class="foot"><span>Kotlin</span><span>Compose</span></div>
+      </div>
+      <div class="ncard">
+        <div class="top">
+          <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <a class="ext" href="https://github.com/mtali/monsterdex" aria-label="External"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        </div>
+        <h3><a href="https://github.com/mtali/monsterdex">Monsterdex</a></h3>
+        <p>Pokemon listing app exploring paging and Compose UI patterns.</p>
+        <div class="foot"><span>Kotlin</span><span>Compose</span></div>
+      </div>
+      <div class="ncard">
+        <div class="top">
+          <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h12l4 4v12H4z"/><path d="M8 12h8M8 16h8"/></svg></span>
+          <a class="ext" href="https://medium.com/@mtali/a-possible-way-to-obtain-local-database-copy-from-production-android-app-with-firebase-cloud-27ae8bd6b1f" aria-label="External"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        </div>
+        <h3><a href="https://medium.com/@mtali/a-possible-way-to-obtain-local-database-copy-from-production-android-app-with-firebase-cloud-27ae8bd6b1f">Pulling a prod DB remotely</a></h3>
+        <p>Using Firebase Cloud Storage and FCM to fetch a production app's database for debugging. On Medium.</p>
+        <div class="foot"><span>Android</span><span>Firebase</span><span>Writing</span></div>
+      </div>
+      <div class="ncard">
+        <div class="top">
+          <span class="folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>
+          <a class="ext" href="https://github.com/mtali" aria-label="External"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+        </div>
+        <h3><a href="https://github.com/mtali">+ 33 more repos</a></h3>
+        <p>Side projects, experiments, and samples. See everything on GitHub.</p>
+        <div class="foot"><span>github.com/mtali</span></div>
+      </div>
     </div>
   </section>
 
-  <section class="reveal">
-    <div class="eyebrow">Before this</div>
-    <div class="sec-title">Earlier work</div>
-    <p class="note"><strong>MyDStv</strong> at Mobile Power, vendor partner to MultiChoice / DStv. On this 5M-download app my work was the Tanzania payments side: I integrated every major mobile network (Vodacom, Airtel, Tigo, Halotel) and Selcom into one payment API gateway, and built the country-wide DStv USSD payment system (<span class="mono">*150*55#</span>) handling DStv payments across Tanzania, processing 2,500+ daily transactions and lifting subscriptions by over 50%.</p>
-  </section>
-
-  <section class="reveal">
-    <div class="eyebrow">Stack</div>
-    <div class="sec-title">Technologies and tools</div>
-    <div class="skill-group">
-      <div class="label">// mobile</div>
-      <div class="tags">
-        <span class="tag">Kotlin</span><span class="tag">Android</span><span class="tag">Jetpack Compose</span><span class="tag">Room</span><span class="tag">WorkManager</span><span class="tag">Coroutines</span><span class="tag">Flow</span><span class="tag">Hilt</span><span class="tag">MVVM</span><span class="tag">Clean Architecture</span><span class="tag">Sentry</span><span class="tag">Firebase</span><span class="tag">ML Kit</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="label">// backend</div>
-      <div class="tags">
-        <span class="tag">Spring Boot</span><span class="tag">Python</span><span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">REST APIs</span><span class="tag">Redis</span><span class="tag">Kafka</span><span class="tag">RabbitMQ</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="label">// data + infra</div>
-      <div class="tags">
-        <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Firestore</span><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">Jenkins</span><span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span><span class="tag">Linux</span>
-      </div>
+  <section id="contact" class="reveal" style="margin: 0 auto;">
+    <div class="contact" style="margin: 0 auto;">
+      <div class="sub">04. What's next?</div>
+      <h2>Get in touch</h2>
+      <p>I'm open to senior and lead remote mobile roles. Whether you have a role in mind or just want to talk Kotlin, my inbox is open. I'll get back to you.</p>
+      <a class="cta" href="mailto:emmanuelmtalig@gmail.com">Say hello</a>
     </div>
   </section>
 
   <footer>
-    Built by Emmanuel Mtali · <a href="https://github.com/mtali">github.com/mtali</a>
+    <div class="social-m">
+      <a href="https://github.com/mtali" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+      <a href="https://linkedin.com/in/emmanuel-mtali" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+      <a href="mailto:emmanuelmtalig@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+    <div class="credit">Built by Emmanuel Mtali · github.com/mtali</div>
   </footer>
 
-</div>
+</main>
 
 <script>
-  // Spotlight follow on cards
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  // Nav: hide on scroll down, show on scroll up, shrink when scrolled
+  const nav = document.getElementById('nav');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 60);
+    if (y > lastY && y > 200) nav.classList.add('hide');
+    else nav.classList.remove('hide');
+    lastY = y;
+  }, { passive: true });
+
+  // Experience tabs
+  document.querySelectorAll('.tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
     });
   });
+
   // Reveal on scroll
   const io = new IntersectionObserver(entries => {
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
