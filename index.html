@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Emmanuel Mtali — Mobile Engineer</title>
+<meta name="description" content="Lead Mobile Engineer. Kotlin, Android, Spring Boot. Shipped apps with millions of downloads." />
+
+<!-- Open Graph / link previews -->
+<meta property="og:title" content="Emmanuel Mtali — Lead Mobile Engineer" />
+<meta property="og:description" content="Kotlin, Android, Spring Boot. Shipped apps with millions of downloads." />
+<meta property="og:image" content="assets/avatar.png" />
+<meta property="og:type" content="website" />
+
+<link rel="icon" type="image/png" href="assets/avatar.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #0a0d12;
+    --bg-soft: #0f141b;
+    --panel: #141b24;
+    --panel-hi: #1a232e;
+    --border: #222d3a;
+    --text: #e9eef4;
+    --muted: #94a3b3;
+    --faint: #66748a;
+    --accent: #5b9dff;
+    --accent2: #9b6bff;
+    --green: #46d17a;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Animated gradient glow behind hero */
+  .glow {
+    position: absolute;
+    top: -260px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 700px;
+    background: radial-gradient(closest-side, rgba(91,157,255,0.22), transparent 70%),
+                radial-gradient(closest-side, rgba(155,107,255,0.18), transparent 70%);
+    background-position: 30% 30%, 70% 60%;
+    background-repeat: no-repeat;
+    background-size: 60% 60%, 55% 55%;
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { background-position: 25% 30%, 75% 60%; }
+    100% { background-position: 60% 50%, 35% 40%; }
+  }
+
+  /* Hero */
+  header { position: relative; padding: 84px 0 48px; z-index: 1; }
+  .avatar {
+    width: 104px; height: 104px; border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    box-shadow: 0 0 0 6px rgba(91,157,255,0.08), 0 12px 40px rgba(0,0,0,0.5);
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .tagline {
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    margin-top: 14px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .location { color: var(--muted); margin-top: 6px; }
+  .location .dot { color: var(--green); }
+  .contact { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.92rem; font-weight: 500;
+    transition: all .18s ease;
+  }
+  .btn:hover { border-color: var(--accent); color: #fff; transform: translateY(-2px); background: var(--panel-hi); }
+  .btn.primary {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-color: transparent; color: #fff; font-weight: 600;
+  }
+  .btn.primary:hover { filter: brightness(1.1); }
+
+  /* Stats band */
+  .stats {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 14px; margin: 8px 0 24px;
+  }
+  .stat {
+    background: linear-gradient(180deg, var(--panel), var(--bg-soft));
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em;
+    background: linear-gradient(90deg, #fff, #b9c6d6);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat .lbl { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
+
+  /* Sections */
+  section { position: relative; z-index: 1; padding: 38px 0; }
+  .eyebrow {
+    font-size: 0.82rem; letter-spacing: 0.04em;
+    color: var(--accent); font-weight: 600; margin-bottom: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .sec-title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 26px; }
+
+  /* App cards */
+  .apps { display: grid; gap: 18px; }
+  .card {
+    display: flex; gap: 20px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: relative; overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), rgba(91,157,255,0.08), transparent 40%);
+    opacity: 0; transition: opacity .3s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: #2e3d4f; box-shadow: 0 18px 50px rgba(0,0,0,0.45); }
+  .card:hover::before { opacity: 1; }
+  .icon {
+    width: 72px; height: 72px; border-radius: 18px; flex-shrink: 0;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+  .card-body { flex: 1; min-width: 0; }
+  .card-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .card-head h3 { font-size: 1.3rem; font-weight: 700; }
+  .badge {
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--green); background: rgba(70,209,122,0.12);
+    padding: 4px 11px; border-radius: 20px; white-space: nowrap;
+  }
+  .badge.gray { color: var(--muted); background: rgba(148,163,179,0.12); }
+  .card p { color: var(--muted); margin: 10px 0 14px; font-size: 0.97rem; }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 0.78rem; color: var(--text);
+    background: var(--panel-hi); border: 1px solid var(--border);
+    padding: 3px 10px; border-radius: 6px;
+  }
+  .card-cta { margin-top: 16px; }
+  .play-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+  }
+  .play-link:hover { text-decoration: underline; }
+
+  /* Repos */
+  .repos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .repo {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px;
+    text-decoration: none; transition: all .18s ease;
+  }
+  .repo:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .repo .name { color: var(--accent); font-weight: 700; font-size: 0.98rem; }
+  .repo .desc { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
+
+  /* Skills */
+  .skill-group { margin-bottom: 18px; }
+  .skill-group .label { color: var(--faint); font-size: 0.82rem; font-weight: 600; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 0.84rem; color: var(--text);
+    background: linear-gradient(180deg, var(--panel-hi), var(--panel));
+    border: 1px solid var(--border);
+    padding: 6px 13px; border-radius: 8px;
+  }
+
+  .note { color: var(--muted); font-size: 0.98rem; }
+  .note strong { color: var(--text); }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  footer { padding: 48px 0 72px; color: var(--faint); font-size: 0.88rem; text-align: center; position: relative; z-index: 1; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .repos { grid-template-columns: 1fr; }
+    .card { flex-direction: column; gap: 14px; }
+    .icon { width: 60px; height: 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="wrap">
+
+  <header class="reveal">
+    <img class="avatar" src="assets/avatar.png" alt="Emmanuel Mtali" />
+    <h1>Emmanuel S Mtali</h1>
+    <div class="tagline">Lead Mobile Engineer. Kotlin, Android, Spring Boot.</div>
+    <div class="location"><span class="dot">●</span> Dar es Salaam, Tanzania. Open to remote (EAT, UTC+3).</div>
+    <div class="contact">
+      <a class="btn primary" href="mailto:emmanuelmtalig@gmail.com">Get in touch</a>
+      <a class="btn" href="https://github.com/mtali">GitHub</a>
+      <a class="btn" href="https://linkedin.com/in/emmanuel-mtali">LinkedIn</a>
+      <a class="btn" href="tel:+255786670278">+255 786 670 278</a>
+    </div>
+  </header>
+
+  <div class="stats reveal">
+    <div class="stat"><div class="num">8+ yrs</div><div class="lbl">building mobile</div></div>
+    <div class="stat"><div class="num">5M+</div><div class="lbl">app downloads</div></div>
+    <div class="stat"><div class="num">4.8</div><div class="lbl">Play Store rating</div></div>
+    <div class="stat"><div class="num">38</div><div class="lbl">public repos</div></div>
+  </div>
+
+  <section class="reveal">
+    <div class="eyebrow">Shipped to Google Play</div>
+    <div class="sec-title">Apps in production</div>
+    <div class="apps">
+
+      <div class="card">
+        <img class="icon" src="assets/starapp.png" alt="StarApp icon" />
+        <div class="card-body">
+          <div class="card-head">
+            <h3>StarApp</h3>
+            <span class="badge">4.8 rating · 120 reviews</span>
+          </div>
+          <p>The core Android app Jaza Energy field agents use for solar charging station inventory, customers, transactions, and device monitoring. I founded it in 2021, migrated it from Java to Kotlin, and grew it to ~36K lines in a multi-module clean architecture. As Lead I shipped the v2.0 release, re-architecting 29 feature modules in my first month. I authored 99.5% of the code.</p>
+          <div class="stack">
+            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Clean Architecture</span><span class="chip">Hilt</span><span class="chip">Room</span><span class="chip">WorkManager</span><span class="chip">Sentry</span><span class="chip">ML Kit</span>
+          </div>
+          <div class="card-cta">
+            <a class="play-link" href="https://play.google.com/store/apps/details?id=com.jaza.starapp">View on Google Play →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="icon" src="assets/siteapp.png" alt="SiteApp icon" />
+        <div class="card-body">
+          <div class="card-head">
+            <h3>SiteApp</h3>
+            <span class="badge">4.8 rating · 84 reviews</span>
+          </div>
+          <p>The Android app field agents use to validate sites, run surveys, recruit candidates, and ship commissioning checklists across Tanzania and Nigeria. I built it from scratch as founding engineer. 23K+ lines of Kotlin. It runs offline-first with WorkManager sync and webhook-based server sync with automatic retry, so it works reliably where the network is weak.</p>
+          <div class="stack">
+            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Room</span><span class="chip">Coroutines</span><span class="chip">Hilt</span><span class="chip">Retrofit</span><span class="chip">Sentry</span>
+          </div>
+          <div class="card-cta">
+            <a class="play-link" href="https://play.google.com/store/apps/details?id=com.jaza.jazaops">View on Google Play →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="icon" src="assets/podplay.png" alt="PodPlay icon" />
+        <div class="card-body">
+          <div class="card-head">
+            <h3>PodPlay</h3>
+            <span class="badge gray">Personal app</span>
+          </div>
+          <p>A podcast player I built and published on my own developer account. A personal project to explore Android media playback, podcast feed parsing, and a clean Compose UI.</p>
+          <div class="stack">
+            <span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Media3</span>
+          </div>
+          <div class="card-cta">
+            <a class="play-link" href="https://play.google.com/store/apps/details?id=com.colisa.podplay">View on Google Play →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="eyebrow">Open source</div>
+    <div class="sec-title">Code samples on GitHub</div>
+    <div class="repos">
+      <a class="repo" href="https://github.com/mtali/bolt"><div class="name">Bolt</div><div class="desc">Open-source ride-sharing app clone. Kotlin, Compose, Google Maps SDK.</div></a>
+      <a class="repo" href="https://github.com/mtali/stock"><div class="name">Stock</div><div class="desc">Browse active and delisted US stocks and ETFs. Kotlin.</div></a>
+      <a class="repo" href="https://github.com/mtali/TigoPesa"><div class="name">TigoPesa</div><div class="desc">Compose recreation of the legacy Tigo Pesa app UI.</div></a>
+      <a class="repo" href="https://github.com/mtali/monsterdex"><div class="name">Monsterdex</div><div class="desc">Pokemon listing app. Kotlin, Compose.</div></a>
+      <a class="repo" href="https://github.com/mtali/gopods"><div class="name">GoPods</div><div class="desc">Android podcast app. Kotlin.</div></a>
+      <a class="repo" href="https://github.com/mtali"><div class="name">+ 33 more</div><div class="desc">See everything at github.com/mtali.</div></a>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="eyebrow">Before this</div>
+    <div class="sec-title">Earlier work</div>
+    <p class="note"><strong>MyDStv</strong> at Mobile Power, vendor partner to MultiChoice / DStv. 5M+ downloads, rated 4.2 from 11,300 reviews. I built the country-wide DStv USSD payment system (<span class="mono">*150*53#</span>) handling 2,500+ daily transactions and lifting subscriptions by over 50%, aggregating every major Tanzanian mobile network and Selcom into one payment API gateway.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="eyebrow">Stack</div>
+    <div class="sec-title">Technologies and tools</div>
+    <div class="skill-group">
+      <div class="label">// mobile</div>
+      <div class="tags">
+        <span class="tag">Kotlin</span><span class="tag">Android</span><span class="tag">Jetpack Compose</span><span class="tag">Room</span><span class="tag">WorkManager</span><span class="tag">Coroutines</span><span class="tag">Flow</span><span class="tag">Hilt</span><span class="tag">MVVM</span><span class="tag">Clean Architecture</span><span class="tag">Sentry</span><span class="tag">Firebase</span><span class="tag">ML Kit</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="label">// backend</div>
+      <div class="tags">
+        <span class="tag">Spring Boot</span><span class="tag">Python</span><span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">REST APIs</span><span class="tag">Redis</span><span class="tag">Kafka</span><span class="tag">RabbitMQ</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="label">// data + infra</div>
+      <div class="tags">
+        <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Firestore</span><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">Jenkins</span><span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span><span class="tag">Linux</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Built by Emmanuel Mtali · <a href="https://github.com/mtali">github.com/mtali</a>
+  </footer>
+
+</div>
+
+<script>
+  // Spotlight follow on cards
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
